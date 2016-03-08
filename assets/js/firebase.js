@@ -1,46 +1,73 @@
-angular.module("Remember2Shop", ["firebase"]);
-  .controller("MasterCtrl", function($scope,$firebaseAuth) {
+angular.module("Remember2Shop",["firebase"])
+  .controller("MasterCtrl", function($scope,$firebaseAuth,$firebaseArray,$window) {
     var ref = new Firebase("https://remember2shop.firebaseio.com/");
     $scope.authObj = $firebaseAuth(ref);
 
-    $scope.authObj.$authWithOAuthPopup("facebook").then(function(authData) {
-      console.log("Logged in as:", authData.uid);
-    }).catch(function(error) {
-      console.log("Authentication failed:", error);
-    });
-  });
-  // .controller("DatabaseCtrl", function($scope,$firebase) {
-  //   var ref = new Firebase('https://remember2shop.firebaseio.com/');
-  //   var usersRef = ref.child("users");
-  //   usersRef.set({
-  //     userone: {
-  //       firstname: "Misha",
-  //       lastname: "Devine"
-  //       email: "mishadevine@hotmail.com",
-  //       password: "AuNtBaY66"
-  //     }
-  //   });
-  // });
-  // .controller("DatabaseCtrl", function($scope,$firebaseObject) {
-  //   var ref = new Firebase('https://remember2shop.firebaseio.com/');
-  //   var obj = $firebaseObject(ref);
-  //   obj.$loaded().then(function() {
-  //     console.log("loaded record:", obj.$id, obj.firstname);
-  //
-  //     angular.forEach(obj, function("Misha",firstname) {
-  //       console.log(key, value);
-  //     });
-  //   });
-  //   $scope.data = obj;
-  //
-  //   obj.$bindTo($scope, "data");
-  // });
-  .controller("DatabaseCtrl", function($scope,$firebaseArray) {
-    var ref = new Firebase("https:remember2shop.firebaseio.com/");
-    var list = $firebaseArray(ref);
-    list.$add({firstname: "Misha", lastname: "Devine", email: "mishadevine@hotmail.com", password: "AuNtBaY66"}).then(function(ref) {
+
+    // Creating a user
+    $scope.createUser = function() {
+      $scope.authObj.$createUser({
+        email: $scope.email,
+        password: $scope.password
+      }).then(function(userData) {
+        console.log("User " + userData.uid + " created successfully!");
+        return $scope.authObj.$authWithPassword({
+          email: $scope.email,
+          password: $scope.password
+        });
+      }).then(function(authData) {
+        console.log("Logged in as:", authData.uid);
+        $window.location.href="../list.html";
+      }).catch(function(error) {
+        console.error("Error: ", error);
+      });
+
+      //Adding to database
+      var usersRef = new Firebase("https://remember2shop.firebaseio.com/users");
+      // var items = $firebaseArray(rootRef);
+      var users = $firebaseArray(usersRef);
+      users.$add({ firstname: $scope.firstname, lastname: $scope.lastname, email: $scope.email, password: $scope.password }).then(function(ref) {
       var id = ref.key();
-      console.log("added record with id" + id);
-      list.$indexFor(id);
-    })
+      console.log("added record with id " + id);
+      users.$indexFor(id); // returns location in the array
+      });
+    }
+
+    // Logging in through Facebook
+    $scope.fbLogin = function() {
+      $scope.authObj.$authWithOAuthPopup("facebook").then(function(authData) {
+        console.log("Logged in as:", authData.uid);
+        $window.location.href="../list.html";
+      }).catch(function(error) {
+        console.log("Authentication failed:", error);
+      });
+    }
+
+    // Logging in with email and password
+    $scope.login = function() {
+      $scope.authObj.$authWithPassword({
+        email: $scope.login.email,
+        password: $scope.login.password
+      }).then(function(authData) {
+        console.log("Logged in as:", authData.uid);
+        $window.location.href="../list.html";
+      }).catch(function(error) {
+        console.error("Authentication failed:", error);
+      });
+    }
+
+    // Adding item to the database
+    $scope.addItem = function() {
+      var rootRef = new Firebase("https://remember2shop.firebaseio.com/users/" + $scope.firstname + "/items");
+      var items = $firebaseArray(rootRef);
+      items.$add({ itemName: $scope.item }).then(function(ref) {
+      // var id = $scope.firstname;
+      // console.log("added record with id " + id);
+      // items.$indexFor(id); // returns location in the array
+      });
+    }
+
+
+
+
   });
