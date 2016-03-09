@@ -20,13 +20,22 @@ body {
 .left-div form {
   margin-left: 30px;
 }
-.login {
+#login {
   background-color: #FFC106;
   border-color: #FFC106;
   border-radius: 5px;
-  width: 80%;
+  width: 82%;
   height: 30px;
   margin-bottom: 20px;
+  font-size: 13px;
+}
+#fbButton {
+  color: rgb(255,255,255);
+  background-color: rgb(59,89,152);
+  border-color: rgb(59,89,152);
+  border-radius: 5px;
+  width: 82%;
+  height: 30px;
   font-size: 13px;
 }
 
@@ -107,7 +116,7 @@ input{
 
 
 }
-.signUp {
+#signUp {
     background-color: #FFC106;
     border-color: #FFC106;
     border-radius: 5px;

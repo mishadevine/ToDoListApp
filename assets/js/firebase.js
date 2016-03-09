@@ -23,8 +23,7 @@ angular.module("Remember2Shop",["firebase"])
       });
 
       //Adding to database
-      var usersRef = new Firebase("https://remember2shop.firebaseio.com/users");
-      // var items = $firebaseArray(rootRef);
+      var usersRef = new Firebase("https://remember2shop.firebaseio.com/users/" + $scope.firstname + " " + $scope.lastname);
       var users = $firebaseArray(usersRef);
       users.$add({ firstname: $scope.firstname, lastname: $scope.lastname, email: $scope.email, password: $scope.password }).then(function(ref) {
       var id = ref.key();
@@ -32,6 +31,23 @@ angular.module("Remember2Shop",["firebase"])
       users.$indexFor(id); // returns location in the array
       });
     }
+
+    $scope.authObj.$onAuth(function(authData) {
+    if (authData) {
+      $scope.addItem = function() {
+        var rootRef = new Firebase("https://remember2shop.firebaseio.com/users/" + authData.uid +  "/items");
+        var items = $firebaseArray(rootRef);
+        items.$add({ itemName: $scope.item }).then(function(ref) {
+        var id = ref.key();
+        console.log("added item with id " + id);
+        items.$indexFor(id); // returns location in the array
+        });
+      }
+      console.log("Logged in as:", authData.uid);
+      } else {
+      console.log("Logged out");
+      }
+    });
 
     // Logging in through Facebook
     $scope.fbLogin = function() {
@@ -56,16 +72,20 @@ angular.module("Remember2Shop",["firebase"])
       });
     }
 
+
+
+
+
     // Adding item to the database
-    $scope.addItem = function() {
-      var rootRef = new Firebase("https://remember2shop.firebaseio.com/users/" + $scope.firstname + "/items");
-      var items = $firebaseArray(rootRef);
-      items.$add({ itemName: $scope.item }).then(function(ref) {
-      // var id = $scope.firstname;
-      // console.log("added record with id " + id);
-      // items.$indexFor(id); // returns location in the array
-      });
-    }
+    // $scope.addItem = function() {
+    //   var rootRef = new Firebase("https://remember2shop.firebaseio.com/users/" + $scope.firstname + "/items");
+    //   var items = $firebaseArray(rootRef);
+    //   items.$add({ itemName: $scope.item }).then(function(ref) {
+    //   var id = ref.key();
+    //   console.log("added record with id " + id);
+    //   items.$indexFor(id); // returns location in the array
+    //   });
+    // }
 
 
 

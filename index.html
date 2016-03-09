@@ -11,7 +11,7 @@
     <!-- AngularFire -->
     <script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
     <script type="text/javascript" src="assets/js/firebase.js"></script>
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
   </head>
   <body ng-app="Remember2Shop" ng-controller="MasterCtrl">
@@ -24,8 +24,8 @@
           <label for="password">Password</label><br>
           <input type="input" name="password" ng-model="login.password" class="form-control"/><br />
 
-          <input ng-click="login()" class="login" type="submit" name="submit" value="Login" />
-          <button ng-click="fbLogin()">Login With Facebook</button>
+          <button ng-click="login()" id="login" type="submit" name="submit" class="form-control">Login</button>
+          <button ng-click="fbLogin()" id="fbButton" class="form-control">Login With Facebook</button>
       </form>
     </div>
 
@@ -35,7 +35,7 @@
         <img class="line1" src="assets/img/Line.jpg">
         <img class="line2" src="assets/img/Line.jpg">
 
-        <p>Remember 2 Shop is a todo list for the modern ages.<br>Sign up now to keep track of list!</p>
+        <p>Remember 2 Shop is a todo list for the modern ages.<br>Sign up now to keep track of your shopping list!</p>
 
         <form class="form-group" ng-submit="createUser()">
             <label for="fName">First Name</label><br>
@@ -48,11 +48,12 @@
             <input type="input" name="email" ng-model="email" class="form-control"/><br />
 
             <label for="password">Password</label><br>
-             <input type="password" name="password" ng-model="password" class="form-control"/><br />
+            <input type="password" name="password" ng-model="password" class="form-control"/><br />
 
             <label for="confirm">Confirm Password</label>
             <input type="password" name="confirm" class="form-control"/><br />
-            <input class="signUp" type="submit" name="submit" value="Sign Up" />
+
+            <button id="signUp" type="submit" name="submit" class="form-control">Sign Up</button>
         </form>
 
     </div>
