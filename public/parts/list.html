@@ -1,0 +1,32 @@
+<div class="left-div">
+  <h1>Add New Item</h1>
+  <form class="form-group" ng-submit="addItem()">
+    <label for="new">New Item</label><br>
+    <input type="text" ng-model="newItem.name" name="new" class="form-control"/><br />
+    <label for="price">Price</label><br>
+    <input type="phone" ng-model="newItem.price" name="price" class="form-control"/><br />
+    <button class="login" type="submit" name="submit">Add New Item</button>
+  </form>
+</div>
+
+<img class="logo" src="assets/img/logo/remember2shop-logo.png">
+
+<div class="middle-div">
+  <img class="line1" src="assets/img/Line.jpg">
+  <img class="line2" src="assets/img/Line.jpg">
+
+  <p>Your list is empty</p>
+  <ul>
+      <li ng-repeat="item in items">
+          {{ item.name }} <strong>{{ item.price | currency }}</strong>
+          <button ng-click="removeItem(item)">Delete</button>
+      </li>
+  </ul>
+</div>
+
+<img class="horizontalLine"src="assets/img/horizontal-line.jpg">
+<img class="lines" src="assets/img/lines.gif">
+
+<div class="right-div">
+
+</div>

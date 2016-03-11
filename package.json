@@ -20,6 +20,13 @@
     "dotenv": "^2.0.0",
     "express": "^4.13.4",
     "mysql": "^2.10.2",
-    "sequelize": "^3.19.3"
+    "sequelize": "^3.19.3",
+    "wiredep": "^3.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-nodemon": "^2.0.6"
   }
 }

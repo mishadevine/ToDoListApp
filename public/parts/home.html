@@ -1,0 +1,43 @@
+<div class="left-div">
+  <h1>Login</h1>
+  <form class="form-group">
+    <label for="email">Email</label><br>
+    <input type="text" name="email" ng-model="login.email" class="form-control"/><br />
+
+    <label for="password">Password</label><br>
+    <input type="password" name="password" ng-model="login.password" class="form-control"/><br />
+
+    <button ng-click="login()" id="login" type="submit" name="submit" class="form-control">Login</button>
+    <button ng-click="fbLogin()" id="fbButton" class="form-control">Login With Facebook</button>
+  </form>
+</div>
+
+<img class="logo" src="assets/img/logo/remember2shop-logo.png">
+
+<div class="middle-div">
+  <img class="line1" src="assets/img/Line.jpg">
+  <img class="line2" src="assets/img/Line.jpg">
+
+  <p>Remember 2 Shop is a todo list for the modern ages.<br>Sign up now to keep track of your shopping list!</p>
+  <form class="form-group" ng-submit="createUser()">
+    <label for="fName">First Name</label><br>
+    <input type="input" name="fName" ng-model="firstname" class="form-control"/><br />
+
+    <label for="lName">Last Name</label><br>
+    <input type="input" name="lName" ng-model="lastname" class="form-control" /><br />
+
+    <label for="email">Email</label><br>
+    <input type="input" name="email" ng-model="email" class="form-control"/><br />
+
+    <label for="password">Password</label><br>
+    <input type="password" name="password" ng-model="password" class="form-control"/><br />
+
+    <label for="confirm">Confirm Password</label>
+    <input type="password" name="confirm" class="form-control"/><br />
+
+    <button id="signUp" type="submit" name="submit" class="form-control">Sign Up</button>
+  </form>
+</div>
+
+<img class="horizontalLine"src="assets/img/horizontal-line.jpg">
+<img class="lines" src="assets/img/lines.gif">
