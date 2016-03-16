@@ -2,6 +2,11 @@ body {
     background-image: url(../img/Background/leather.png);
 }
 
+/************************* All Divs **************************/
+.left-div, .middle-div, .right-div {
+    background-color: #FFFEF8;
+}
+
 /************************* Left Div **************************/
 .left-div {
     width: 245px;
@@ -38,8 +43,36 @@ body {
   height: 30px;
   font-size: 13px;
 }
-
+#addNew {
+  background-color: rgb(255, 217, 102);
+  border-color: rgb(255, 217, 102);
+  border-radius: 5px;
+  width: 82%;
+  height: 30px;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+#update {
+  background-color: rgb(255, 217, 102);
+  border-color: rgb(255, 217, 102);
+  border-radius: 5px;
+  width: 82%;
+  height: 30px;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
 /************************* Middle Div: header and background **************************/
+.logout {
+  float: right;
+  margin-top: -630px;
+  margin-right: 285px;
+  position: relative;
+}
+.logout button {
+  background-color: #FFC106;
+  border-color: #FFC106;
+  border-radius: 5px;
+}
 .middle-div {
     width: 900px;
     height: 800px;
@@ -88,20 +121,20 @@ body {
 }
 
 /************************* Middle Div: content **************************/
-/*.middle-div ul li {
-  position: relative;
-}*/
-
-/*h2 {
-    text-align: center;
-    padding: 10px;
-}*/
+.middle-div ul li {
+  margin-left: 38%;
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  list-style-type: none;
+}
+#color {
+  color: #FFC106;
+}
 .middle-div form {
     width: 86%;
     padding: 15px;
     margin: auto;
     margin-left: 100px;
-    /*margin-top: -600px;*/
     position: relative;
 }
 label {
@@ -128,7 +161,7 @@ input{
 
 .fb-login-button {
     border-radius: 20px;
-background-color: #45609C;
+    background-color: #45609C;
     color: #FBFCFC;
     border-color: #45609C;
     border-radius: 5px;
@@ -185,10 +218,26 @@ background-color: #45609C;
     width: 245px;
     height: 500px;
     float: right;
-    margin-top: -644px;
+    margin-top: -664px;
     margin-right: 8px;
     border-radius: 5px;
 }
-.left-div, .middle-div, .right-div {
-    background-color: #FFFEF8;
+.right-div h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.right-div ul {
+    list-style: none;
+    height: 373px;
+    overflow: auto;
+}
+.right-div ul li {
+  margin-bottom: 20px;
+  margin-left: 30px;
+}
+.right-div ul li:before {
+    color: #FFC106;
+    content: '☆ ';
+    font-size: 1.2em;
+    font-weight: bold;
 }

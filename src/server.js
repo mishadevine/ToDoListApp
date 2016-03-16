@@ -8,12 +8,10 @@ var app = express();
 app.get('*', function(req, res, next) {
  if(path.extname(req.path).length > 0) {
    next()
-   console.log('one');
  }
   else {
     req.url = '/index.html'
     next()
-    console.log('two');
   }
 })
 
