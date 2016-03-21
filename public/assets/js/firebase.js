@@ -29,7 +29,7 @@ angular.module("Remember2Shop",["firebase","ngRoute"])
           console.log("Logged in as:", authData.uid);
           $location.path('/list');
 
-        //Adding to database
+        //Adding user to database
           var usersRef = new Firebase("https://remember2shop.firebaseio.com/users/" + authData.uid);
           var obj = $firebaseObject(usersRef);
           obj.userInformation = { firstname: $scope.firstname, lastname: $scope.lastname, email: $scope.email, password: $scope.password };

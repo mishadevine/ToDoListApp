@@ -1,5 +1,5 @@
 angular.module("Remember2Shop")
-.controller("ListController", function($scope,$firebaseArray,$firebaseAuth){
+  .controller("ListController", function($scope,$firebaseArray,$firebaseAuth){
     //Connect to Firebase
     var ref = new Firebase("https://remember2shop.firebaseio.com/");
 

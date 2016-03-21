@@ -1,13 +1,24 @@
 <div class="left-div">
   <h1>Login</h1>
-  <form class="form-group">
+  <form class="form-group" novalidate>
     <label for="email">Email</label><br>
-    <input type="text" name="email" ng-model="login.email" class="form-control"/>
+    <input type="email" name="email" ng-model="login.email" class="form-control" placeholder="jondoe@email.com" required/>
+    <div class="input-help">
+      <h4 id="mail">Invalid Email</h4>
+    </div>
 
     <label for="password">Password</label><br>
-    <input type="password" name="password" ng-model="login.password" class="form-control"/><br />
-
+    <input id="immediate-help" class="form-control" type="password" name="password" ng-model="login.password" password-validate required/><br />
+    <div class="input-help" id="passW">
+      <h4 class="pass">Password must meet the following requirements:</h4>
+      <ul>
+        <li ng-class="pwdHasLetter">At least <strong>one letter</strong></li>
+        <li ng-class="pwdHasNumber">At least <strong>one number</strong></li>
+        <li ng-class="pwdValidLength">At least <strong>8 characters long</strong></li>
+      </ul>
+    </div>
     <button ng-click="login()" id="login" type="submit" name="submit" class="form-control">Login</button>
+    <button ng-click="login()" id="login" disabled>Login</button>
     <button ng-click="fbLogin()" id="fbButton" class="form-control">Login With Facebook</button>
   </form>
 </div>
@@ -21,19 +32,19 @@
   <p>Remember 2 Shop is a todo list for the modern ages.<br>Sign up now to keep track of your shopping list!</p>
   <form class="form-group" ng-submit="createUser()">
     <label for="fName">First Name</label><br>
-    <input type="input" name="fName" ng-model="firstname" class="form-control"/><br />
+    <input type="input" name="fName" ng-model="firstname" class="form-control" required=""/><br />
 
     <label for="lName">Last Name</label><br>
-    <input type="input" name="lName" ng-model="lastname" class="form-control" /><br />
+    <input type="input" name="lName" ng-model="lastname" class="form-control" required/><br />
 
     <label for="email">Email</label><br>
-    <input type="input" name="email" ng-model="email" class="form-control"/><br />
+    <input type="email" name="email" ng-model="email" class="form-control" required=""/><br />
 
     <label for="password">Password</label><br>
-    <input type="password" name="password" ng-model="password" class="form-control"/><br />
+    <input type="password" name="password" ng-model="password" class="form-control" required/><br />
 
     <label for="confirm">Confirm Password</label>
-    <input type="password" name="confirm" class="form-control"/><br />
+    <input type="password" name="confirm" class="form-control" required/><br />
 
     <button id="signUp" type="submit" name="submit" class="form-control">Sign Up</button>
   </form>
