@@ -1,24 +1,27 @@
 <div class="left-div">
   <h1>Login</h1>
-  <form class="form-group" novalidate>
+  <form class="form-group" name="loginForm" novalidate>
     <label for="email">Email</label><br>
-    <input type="email" name="email" ng-model="login.email" class="form-control" placeholder="jondoe@email.com" required/>
-    <div class="input-help">
-      <h4 id="mail">Invalid Email</h4>
+    <input type="email" name="email" ng-model="login.email" class="form-control" placeholder="johndoe@email.com" required/>
+    <div ng-messages="loginForm.email.$error" ng-show="loginForm.email.$touched">
+      <p ng-message="required">Please enter an e-mail address.</p>
+    </div>
+    <div ng-messages="loginForm.email.$error" ng-show="validateEmail">
+      <p ng-message="email">Please enter a valid e-mail.</p>
     </div>
 
     <label for="password">Password</label><br>
-    <input id="immediate-help" class="form-control" type="password" name="password" ng-model="login.password" password-validate required/><br />
-    <div class="input-help" id="passW">
-      <h4 class="pass">Password must meet the following requirements:</h4>
-      <ul>
-        <li ng-class="pwdHasLetter">At least <strong>one letter</strong></li>
-        <li ng-class="pwdHasNumber">At least <strong>one number</strong></li>
-        <li ng-class="pwdValidLength">At least <strong>8 characters long</strong></li>
-      </ul>
+    <input class="form-control" type="password" name="password" ng-model="login.password" ng-minlength="8" required/>
+    <div ng-messages="loginForm.password.$error" ng-show="loginForm.password.$touched">
+      <p ng-message="required">Please enter your password.</p>
     </div>
-    <button ng-click="login()" id="login" type="submit" name="submit" class="form-control">Login</button>
-    <button ng-click="login()" id="login" disabled>Login</button>
+    <div ng-messages="loginForm.password.$error" ng-show="validatePasswordLength">
+      <p ng-message="minlength">At Least 8 characters</p>
+    </div>
+    <br />
+
+
+    <button ng-click="login()" id="login" type="submit" name="submit" class="form-control" ng-disabled="loginForm.$invalid">Login</button>
     <button ng-click="fbLogin()" id="fbButton" class="form-control">Login With Facebook</button>
   </form>
 </div>
@@ -29,24 +32,45 @@
   <img class="line1" src="assets/img/Line.jpg">
   <img class="line2" src="assets/img/Line.jpg">
 
-  <p>Remember 2 Shop is a todo list for the modern ages.<br>Sign up now to keep track of your shopping list!</p>
-  <form class="form-group" ng-submit="createUser()">
+  <p class="intro">Remember 2 Shop is a todo list for the modern ages.<br>Sign up now to keep track of your shopping list!</p>
+  <form name="signupForm" class="form-group" ng-submit="createUser()" novalidate>
     <label for="fName">First Name</label><br>
-    <input type="input" name="fName" ng-model="firstname" class="form-control" required=""/><br />
+    <input type="input" name="fName" ng-model="firstname" class="form-control" required/>
+
+    <div ng-messages="signupForm.fName.$error" ng-show="signupForm.fName.$touched">
+      <p ng-message="required">Please enter your first name.</p>
+    </div><br />
 
     <label for="lName">Last Name</label><br>
-    <input type="input" name="lName" ng-model="lastname" class="form-control" required/><br />
+    <input type="input" name="lName" ng-model="lastname" class="form-control" required/>
+
+    <div ng-messages="signupForm.lName.$error" ng-show="signupForm.lName.$touched">
+      <p ng-message="required">Please enter your last name.</p>
+    </div><br />
 
     <label for="email">Email</label><br>
-    <input type="email" name="email" ng-model="email" class="form-control" required=""/><br />
+    <input type="email" name="email" ng-model="email" class="form-control" required/>
+
+    <div ng-messages="signupForm.email.$error" ng-show="signupForm.email.$touched">
+      <p ng-message="required">Please enter an e-mail address.</p>
+    </div>
+
+    <div ng-messages="signupForm.email.$error" ng-show="validateEmail">
+      <p ng-message="email">Please enter a valid e-mail.</p>
+    </div><br />
 
     <label for="password">Password</label><br>
-    <input type="password" name="password" ng-model="password" class="form-control" required/><br />
+    <input class="form-control" type="password" name="password" ng-model="password" ng-minlength="8" required/>
 
-    <label for="confirm">Confirm Password</label>
-    <input type="password" name="confirm" class="form-control" required/><br />
+    <div ng-messages="signupForm.password.$error" ng-show="signupForm.password.$touched">
+      <p ng-message="required">Please enter your password.</p>
+    </div>
 
-    <button id="signUp" type="submit" name="submit" class="form-control">Sign Up</button>
+    <div ng-messages="signupForm.password.$error" ng-show="validatePasswordLength">
+      <p ng-message="minlength">At Least 8 characters</p>
+    </div><br />
+
+    <button id="signUp" type="submit" name="submit" class="form-control" ng-disabled="signupForm.$invalid">Sign Up</button>
   </form>
 </div>
 

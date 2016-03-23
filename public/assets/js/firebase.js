@@ -1,4 +1,4 @@
-angular.module("Remember2Shop",["firebase","ngRoute"])
+angular.module("Remember2Shop",["firebase","ngRoute","ngMessages"])
   .config(function($routeProvider) {
     $routeProvider.when("/", {
       templateUrl: "parts/home.html",
@@ -7,6 +7,10 @@ angular.module("Remember2Shop",["firebase","ngRoute"])
     .when("/list", {
       templateUrl: "parts/list.html",
       controller: "ListController"
+    })
+    .when("/list/:user", {
+      templateUrl: "parts/list.html",
+      controller: "SharedListController"
     })
     .otherwise("/");
   })
@@ -64,6 +68,15 @@ angular.module("Remember2Shop",["firebase","ngRoute"])
       }).catch(function(error) {
         console.error("Authentication failed:", error);
       });
+    }
+
+    // Login and Sign up form validation
+    $scope.validateEmail = function() {
+      return loginForm.email.$touched && loginForm.email.$invalid || signupForm.email.$touched && signupForm.email.$invalid
+    }
+
+    $scope.validatePasswordLength = function() {
+      return loginForm.password.$touched || signupForm.password.$touched
     }
 
   });

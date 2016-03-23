@@ -11,6 +11,9 @@
   <form class="form-group" ng-submit="updateItem()">
     <button id="update" class="form-control" type="submit" name="submit">Update Item</button>
   </form>
+  <form>
+    <a target="_blank" ng-href="#/list/{{userID}}"><button type="button" name="share" class="form-control" id="share">Share Your List</button></a>
+  </form>
 </div>
 <div>
   <img class="logo" src="assets/img/logo/remember2shop-logo.png">
@@ -21,13 +24,14 @@
 <div class="logout">
   <a href="/#/"><button class="form-control" name="logout" ng-click="authObj.$unauth()">Logout</button></a>
 </div>
+<p class="shareIntro">Click the Share Your List button to grab the link share to your list with your friends!</p>
 
 <div class="middle-div">
   <img class="line1" src="assets/img/Line.jpg">
   <img class="line2" src="assets/img/Line.jpg">
 
   <!-- <p>Your list is empty</p> -->
-  <p>
+  <p class="list">
     <ul>
         <li ng-repeat="item in items">
             {{ item.name }} <strong id="color">{{ item.price | currency }}</strong><br>

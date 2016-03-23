@@ -1,15 +1,17 @@
 angular.module("Remember2Shop")
-  .controller("ListController", function($scope,$firebaseArray,$firebaseAuth){
+  .controller("SharedListController", function($scope,$firebaseArray,$firebaseAuth,$routeParams){
     //Connect to Firebase
     var ref = new Firebase("https://remember2shop.firebaseio.com/");
+
+    // console.log("Share");
 
     $scope.authObj = $firebaseAuth(ref);
     var items;
 
     $scope.authObj.$onAuth(function(authData) {
     if (authData) {
-      var URL = "https://remember2shop.firebaseio.com/users/" + authData.uid + "/items";
-      $scope.userID = authData.uid;
+      var id = $routeParams.user;
+      var URL = "https://remember2shop.firebaseio.com/users/" + id + "/items";
       var listRef = new Firebase(URL);
       items = $firebaseArray(listRef);
       $scope.items = items;
